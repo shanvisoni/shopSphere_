@@ -63,7 +63,7 @@ reports/
 # Build output
 build/
 dist/
-public/
+
 
 # IDE specific files
 .idea/

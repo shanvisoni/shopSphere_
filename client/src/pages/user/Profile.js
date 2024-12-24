@@ -4,6 +4,7 @@ import UserMenu from '../../component/layout/UserMenu'
 import { useAuth } from '../../context/auth'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+const API = "http://localhost:5080/api/v1";
 
 const Profile = () => {
   const [auth,setAuth]=useAuth()
@@ -26,7 +27,7 @@ setAddress(address)
     event.preventDefault();
 
     try {
-      const {data} = await axios.put('/api/v1/auth/profile', { email, name, password, phone, address })
+      const {data} = await axios.put(`${API}/auth/profile`, { email, name, password, phone, address })
       if (data?.error) {
         toast.error(data?.error)
 

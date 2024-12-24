@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../component/layout/Layout'
 import { useSearch } from '../context/search'
+const API = "http://localhost:5080/api/v1";
 
 const Search = () => {
     const [values,setValues] = useSearch();
@@ -19,7 +20,7 @@ const Search = () => {
     >
       {/* Product Image */}
       <img
-        src={`/api/v1/product/product-photo/${p._id}`}
+        src={`${API}/product/product-photo/${p._id}`}
         className="card-img-top"
         alt={p.name}
         style={{ height: "200px", objectFit: "cover" }} // Fixed height for images

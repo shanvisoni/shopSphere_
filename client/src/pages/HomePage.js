@@ -6,6 +6,7 @@ import { Checkbox ,Radio} from 'antd'
 import { Prices } from '../component/Prices'
 import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
+const API = "http://localhost:5080/api/v1";
 
 const HomePage = () => {
  const navigate=useNavigate();
@@ -23,7 +24,7 @@ const HomePage = () => {
 //get all category 
 const getAllCategory=async()=>{
   try {
-    const {data} =await axios.get('/api/v1/category/get-category')
+    const {data} =await axios.get(`${API}/category/get-category`)
     if(data?.success){
       setCategories(data?.category)
     }
@@ -36,7 +37,7 @@ const getAllCategory=async()=>{
   //get Total count
   const getTotal=async(req,res)=>{
     try {
-      const {data}=await axios.get('/api/v1/product/product-count')
+      const {data}=await axios.get(`${API}/product/product-count`)
       setTotal(data?.total)
     } catch (error) {
     }
@@ -50,7 +51,7 @@ const getAllCategory=async()=>{
   const loadMore=async()=>{
     try {
       setLoading(true)
-      const {data}=await axios.get(`/api/v1/product/product-list/${page}`)
+      const {data}=await axios.get(`${API}/product/product-list/${page}`)
       setLoading(false)
       setProducts([...products,...data?.products])
     } catch (error) {
@@ -77,7 +78,7 @@ useEffect(()=>{
 const getAllProducts=async()=>{
   try {
     setLoading(true)
-    const {data}=await axios.get(`/api/v1/product/product-list/${page}`)
+    const {data}=await axios.get(`${API}/product/product-list/${page}`)
     setLoading(false)
 
   setProducts(data.products);
@@ -101,7 +102,7 @@ useEffect(()=>{
 //get filtered Product
 const filterProduct = async()=>{
   try {
-    const {data} = await axios.post('/api/v1/product/product-filters',{checked,radio})
+    const {data} = await axios.post(`${API}/product/product-filters`,{checked,radio})
     setProducts(data?.products)
   } catch (error) {
     console.log(error)
@@ -160,7 +161,7 @@ const filterProduct = async()=>{
     >
       {/* Product Image */}
       <img
-        src={`/api/v1/product/product-photo/${p._id}`}
+        src={`${API}/product/product-photo/${p._id}`}
         className="card-img-top"
         alt={p.name}
         style={{ height: "200px", objectFit: "cover" }} // Fixed height for images

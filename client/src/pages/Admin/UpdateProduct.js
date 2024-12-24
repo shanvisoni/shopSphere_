@@ -6,7 +6,7 @@ import axios from 'axios';
 import {Select} from "antd"
 import { useNavigate, useParams } from 'react-router-dom';
 const {Option}=Select
-
+const API = "http://localhost:5080/api/v1";
 
 const UpdateProduct = () => {
     const navigate=useNavigate()
@@ -24,7 +24,7 @@ const UpdateProduct = () => {
 
  const getSingleProduct=async()=>{
   try {
-    const { data } = await axios.get(`/api/v1/product/single-product/${params.slug}`);
+    const { data } = await axios.get(`${API}/product/single-product/${params.slug}`);
     console.log("Fetched product data:", data);
     if (data?.product) {
       setName(data.product.name);
@@ -47,7 +47,7 @@ const UpdateProduct = () => {
 
     const getAllCategory = async () => {
       try {
-        const { data } = await axios.get('/api/v1/category/get-category')
+        const { data } = await axios.get(`${API}/category/get-category`)
         if (data?.success) {
           setCategories(data?.category)
         }
@@ -72,7 +72,7 @@ const UpdateProduct = () => {
         photo && productData.append("photo",photo)
          productData.append("category",category)
      
-      const { data } = await axios.put(`/api/v1/product/update-product/${id}`, productData);
+      const { data } = await axios.put(`${API}/product/update-product/${id}`, productData);
       if (data?.success) {
         toast.success("Product updated successfully!");
         setTimeout(() => navigate('/dashboard/admin/products'), 1000);
@@ -90,7 +90,7 @@ const UpdateProduct = () => {
       try {
         let answer=window.prompt('Are you sure want to delete this product ? ')
         if(!answer) return; 
-        const {data} =await axios.delete(`/api/v1/product/delete-product/${id}`)
+        const {data} =await axios.delete(`${API}/product/delete-product/${id}`)
         toast.success('Product deleted succefully')
         setTimeout(() => navigate('/dashboard/admin/products'), 1000);
       } catch (error) {
@@ -129,7 +129,7 @@ toast.error('Something went wrong')
                   </div>
               ):(
                 <div className='text-center'>
-                <img src={`/api/v1/product/product-photo/${id}`}   alt='product_photo' height={'200px'} className='img img-responsive'/>
+                <img src={`${API}/product/product-photo/${id}`}   alt='product_photo' height={'200px'} className='img img-responsive'/>
                 </div>
               )}
             </div>

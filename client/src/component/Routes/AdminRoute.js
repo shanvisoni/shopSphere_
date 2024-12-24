@@ -35,6 +35,7 @@ import { useNavigate,Outlet } from 'react-router-dom';
 
 import axios from 'axios';
 import Spinner from "../Spinner";
+const API = "http://localhost:5080/api/v1";
 
 export default function AdminRoute() {
     const [ok, setOk] = useState(false);
@@ -44,7 +45,7 @@ export default function AdminRoute() {
     useEffect(() => {
         const authCheck = async () => {
             try {
-                const res = await axios.get('/api/v1/auth/admin-auth');
+                const res = await axios.get(`${API}/auth/admin-auth`);
                 if (res.data.ok) {
                     setOk(true);
                 } else {

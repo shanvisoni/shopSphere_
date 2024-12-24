@@ -16,10 +16,7 @@ const app=express()
 const __dirname=path.resolve();
 
 app.use(cors(
-    {
-        origin: ["https:// deploy-mern-1whq.vercel.app"],
-        credentials:true
-    }
+   
 ))
 app.use(express.json())
 app.use(morgan('dev'))
@@ -32,9 +29,9 @@ app.use('/api/v1/product',productRoutes);
 // app.get('/',(req,res)=>{
 //     res.send({msg:"welcome to ecommerce app"})
 // })
-app.use(express.static(path.join(__dirname,"/client/build")))
+app.use(express.static(path.join(__dirname,"./client/build")))
 app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+    res.sendFile(path.join(__dirname,"./client/build/index.html"));
 })
 
 const PORT=process.env.PORT || 8000;
@@ -42,3 +39,6 @@ const PORT=process.env.PORT || 8000;
 app.listen(PORT,()=>{
     console.log(`Server running on ${PORT}`.green)
 })
+
+
+//"proxy": "http://localhost:5080",

@@ -3,6 +3,7 @@ import { useCart } from '../context/cart'
 import { useAuth } from '../context/auth'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../component/layout/Layout'
+const API = "http://localhost:5080/api/v1";
 
 const CartPage = () => {
     const [cart,setCart]=useCart()
@@ -53,7 +54,7 @@ const totalPrice=()=>{
     <div className='row m-2 card flex-row'>
         <div className='col-md-4'>
         <img
-        src={`/api/v1/product/product-photo/${p._id}`}
+        src={`${API}/product/product-photo/${p._id}`}
         className="card-img-top"
         alt={p.name}
         // style={{ height: "200px", objectFit: "cover" }} // Fixed height for images

@@ -5,6 +5,7 @@ import {  toast } from 'react-toastify';
 import axios from 'axios';
 import CategoryForm from '../../component/Form/CategoryForm';
 import { Button, Modal } from 'antd';
+const API = "http://localhost:5080/api/v1";
 
 const CreateCategory = () => {
   const[categories,setCategories]=useState([])
@@ -17,7 +18,7 @@ const[updatedName,setUpdatedName]=useState("")
 const handleSubmit=async(e)=>{
 e.preventDefault()
 try {
-  const {data} = await axios.post('/api/v1/category/create-category',{name})
+  const {data} = await axios.post(`${API}/category/create-category`,{name})
   if(data?.success){
     toast.success(`${name} is created`)
     getAllCategory();
@@ -51,7 +52,7 @@ toast.error(data.message)
 //get all category 
   const getAllCategory=async()=>{
     try {
-      const {data} =await axios.get('/api/v1/category/get-category')
+      const {data} =await axios.get(`${API}/category/get-category`)
       if(data?.success){
         setCategories(data?.category)
       }
@@ -67,7 +68,7 @@ toast.error(data.message)
 const handleUpdate=async(e)=>{
   e.preventDefault()
 try {
-  const {data} = await axios.put(`/api/v1/category/update-category/${selected._id}`,{name:updatedName})
+  const {data} = await axios.put(`${API}/category/update-category/${selected._id}`,{name:updatedName})
   if(data?.success){
     toast.success(`${updatedName} is updated `)
     setSelected(null)
@@ -85,7 +86,7 @@ try {
 }
 const handleDelete=async(pId)=>{
 try {
-  const {data} = await axios.delete(`/api/v1/category/delete-category/${pId}`);
+  const {data} = await axios.delete(`${API}/category/delete-category/${pId}`);
   if(data.success){
     toast.success(`category is deleted `)
 

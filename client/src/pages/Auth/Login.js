@@ -5,6 +5,7 @@ import Layout from '../../component/layout/Layout'
 import {  toast } from 'react-toastify';
 import "../../styles/authStyle.css"
 import { useAuth } from "../../context/auth";
+const API = "http://localhost:5080/api/v1";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const loacation=useLocation();
       event.preventDefault();
   
 try {
-    const res=await axios.post('/api/v1/auth/login',{ email, password})
+    const res=await axios.post(`${API}/auth/login`,{ email, password})
     if(res && res.data.success){
      toast.success(res.data.message)
 

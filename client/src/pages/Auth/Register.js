@@ -5,6 +5,7 @@ import Layout from '../../component/layout/Layout'
 import { toast } from 'react-toastify';
 import "../../styles/authStyle.css"
 import { useAuth } from "../../context/auth";
+const API = "http://localhost:5080/api/v1";
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const Register = () => {
     event.preventDefault();
 
     try {
-      const res = await axios.post('/api/v1/auth/register', { email, name, password, phone, address, answer })
+      const res = await axios.post(`${API}/auth/register`, { email, name, password, phone, address, answer })
       if (res && res.data.success) {
         toast.success(res.data.message)
 

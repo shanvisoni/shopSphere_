@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Layout from '../component/layout/Layout'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
+const API = "http://localhost:5080/api/v1";
 
 const CategoryProduct = () => {
   const params=useParams()
@@ -15,7 +16,7 @@ if(params?.slug) getProductsByCat()
 
   const getProductsByCat=async()=>{
     try {
-      const {data} = await axios.get(`/api/v1/product/product-category/${params.slug}`)
+      const {data} = await axios.get(`${API}/product/product-category/${params.slug}`)
       setProducts(data?.products)
       setCategory(data?.category)
     } catch (error) {
@@ -48,7 +49,7 @@ if(params?.slug) getProductsByCat()
     >
       {/* Product Image */}
       <img
-        src={`/api/v1/product/product-photo/${p._id}`}
+        src={`${API}/product/product-photo/${p._id}`}
         className="card-img-top"
         alt={p.name}
         style={{ height: "200px", objectFit: "cover" }} // Fixed height for images

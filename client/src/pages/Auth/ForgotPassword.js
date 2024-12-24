@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import Layout from '../../component/layout/Layout'
 import {  toast } from 'react-toastify';
 import "../../styles/authStyle.css"
+const API = "http://localhost:5080/api/v1";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
       event.preventDefault();
   
 try {
-    const res=await axios.post('/api/v1/auth/forgot-password',{ email, newPassword,answer})
+    const res=await axios.post(`${API}/auth/forgot-password`,{ email, newPassword,answer})
     if(res && res.data.success){
      toast.success(res.data.message)
 

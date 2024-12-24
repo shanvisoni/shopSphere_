@@ -26,7 +26,7 @@ try {
 toast.error(data.message)
   }
 } catch (error) {
-  console.log(error)
+
   toast.error('Something went wrong in input form')
 }
 }
@@ -56,7 +56,7 @@ toast.error(data.message)
         setCategories(data?.category)
       }
     } catch (error) {
-      console.log(error);
+      
       toast.error('Something went wrong in getting category');
     }
   }
@@ -79,7 +79,7 @@ try {
  toast.error(data.message)
    }
 } catch (error) {
-  console.log(error)
+
   toast.error('Something went wrong in updating form')
 }
 }
@@ -95,7 +95,7 @@ try {
  toast.error(data.message)
    }
 } catch (error) {
-  console.log(error)
+
   toast.error('Something went wrong in updating form')
 }
 }

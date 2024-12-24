@@ -37,7 +37,7 @@ export const productController = async (req, res) => {
             products
         });
     } catch (error) {
-        console.log(error);
+        
         res.status(500).send({
             success: false,
             message: 'Error in creating product',
@@ -62,7 +62,7 @@ try {
         total:products.length,
     });
 } catch (error) {
-    console.log(error);
+   
     res.status(500).send({
         success: false,
         message: 'Error in creating product',
@@ -82,12 +82,12 @@ export const getSingleProductController=async(req,res)=>{
     
     });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
+         res.status(500).send({
             success: false,
-            message: 'Error in creating product',
+            message: 'Error ',
             error
         });
+      
     }
     
 }
@@ -103,12 +103,12 @@ export const productPhotoController=async(req,res)=>{
        product.photo.data)}
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
+         res.status(500).send({
             success: false,
-            message: 'Error while creating product',
+            message: 'Error ',
             error
         });
+      
     }
     
 }
@@ -123,12 +123,12 @@ res.status(200).send({
 
 });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
+         res.status(500).send({
             success: false,
-            message: 'Error while deleting product',
+            message: 'Error ',
             error
         });
+       
     }
     
 }
@@ -166,12 +166,12 @@ export const updateProductController=async(req,res)=>{
             products
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
+         res.status(500).send({
             success: false,
-            message: 'Error in updating product',
+            message: 'Error ',
             error
         });
+       
     }
     
 }
@@ -189,7 +189,7 @@ export const productFiltersController=async(req,res)=>{
             products,
         })
     } catch (error) {
-        console.log(error)
+        
         res.status(400).send({
             success:false,
             message:'Error While Filtering Products'
@@ -207,7 +207,7 @@ export const productCountController=async(req,res)=>{
             total,
         })
     } catch (error) {
-        console.log(error)
+     
         res.status(400).send({
             success:false,
             message:'Error in Product count',
@@ -229,7 +229,7 @@ export const productListController=async(req,res)=>{
         })
         
     } catch (error) {
-        console.log(error)
+     
         res.status(400).send({
             success:false,
             message:'Error in page cart',
@@ -251,7 +251,7 @@ export const searchProductController=async(req,res)=>{
         res.json(results)
         
     } catch (error) {
-        console.log(error)
+   
         res.status(400).send({
             success:false,
             message:'Error in Search Product API',
@@ -315,14 +315,14 @@ export const relatedProductController = async (req, res) => {
         .limit(3)
         .populate("category");
   
-      console.log("Related Products Query Result:", products);
+    //   console.log("Related Products Query Result:", products);
   
       res.status(200).send({
         success: true,
         products,
       });
     } catch (error) {
-      console.error("Error in relatedProductController:", error);
+    //   console.error("Error in relatedProductController:", error);
       res.status(400).send({
         success: false,
         message: "Error while getting related products",
@@ -343,7 +343,7 @@ export const productCategoryController = async (req, res) => {
         products,
      });
     } catch (error) {
-      console.error("Error in relatedProductController:", error);
+    //   console.error("Error in relatedProductController:", error);
       res.status(400).send({
         success: false,
         message: "Error while getting products",

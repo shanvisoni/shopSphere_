@@ -9,7 +9,6 @@ export default function useCategory(){
             const {data}=await axios.get("/api/v1/category/get-category");
             setCategories(data?.category);
         } catch (error) {
-            console.log(error);
         }
     };
     useEffect(()=>{

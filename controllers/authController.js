@@ -51,7 +51,7 @@ export const registerController = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log(error);
+
     res.status(500).send({
       success: false,
       message: "Errro in Registeration",
@@ -102,7 +102,7 @@ export const loginController = async (req, res) =>{
         })
     } 
     catch (error) {
-        console.log(error);
+         
         res.status(500).send({
           success: false,
           message: "Errro in Registeration",
@@ -139,7 +139,7 @@ export const forgotPasswordController = async (req, res) =>{
 
     
  } catch (error) {
-   console.log(error);
+    
    res.status(500).send({
     success:false,
     message:'Something went wrong',
@@ -153,7 +153,7 @@ export const testController = async (req, res) =>{
   try {
      res.send('protected route')
   } catch (error) {
-    console.log(error);
+     
     res.send({error})
   }
    
@@ -181,7 +181,7 @@ return res.json({error:'Password is required and 6 character long'})
    })
 
   } catch (error) {
-    console.log(error);
+     
     res.status(400).send({
       success:false,
       message:'Error While Update profile',

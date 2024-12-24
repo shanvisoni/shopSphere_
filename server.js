@@ -15,7 +15,12 @@ connectDB();
 const app=express()
 const __dirname=path.resolve();
 
-app.use(cors())
+app.use(cors(
+    {
+        origin: ["https:// deploy-mern-1whq.vercel.app"],
+        credentials:true
+    }
+))
 app.use(express.json())
 app.use(morgan('dev'))
 

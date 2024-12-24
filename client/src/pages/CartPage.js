@@ -18,7 +18,7 @@ const totalPrice=()=>{
       currency:"USD",
     })
   } catch (error) {
-    console.log(error)
+   
   }
 }
 
@@ -30,7 +30,7 @@ const totalPrice=()=>{
         setCart(myCart);
         localStorage.setItem('cart',JSON.stringify(myCart))
       } catch (error) {
-        console.log(error)
+       
       }
     }
   return (

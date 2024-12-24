@@ -36,7 +36,7 @@ const UpdateProduct = () => {
       setShipping(data.product.shipping);
     }
   } catch (error) {
-    console.log(error);
+
   }
  };
 
@@ -52,7 +52,7 @@ const UpdateProduct = () => {
           setCategories(data?.category)
         }
       } catch (error) {
-        console.log(error);
+     
         toast.error('Something went wrong in getting category');
       }
     }
@@ -94,7 +94,7 @@ const UpdateProduct = () => {
         toast.success('Product deleted succefully')
         setTimeout(() => navigate('/dashboard/admin/products'), 1000);
       } catch (error) {
-console.log(error)
+
 toast.error('Something went wrong')
       }
     }

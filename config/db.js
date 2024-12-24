@@ -30,9 +30,9 @@ const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log(`Connected to MongoDB Database at ${conn.connection.host}`.green);
+        // console.log(`Connected to MongoDB Database at ${conn.connection.host}`.green);
     } catch (error) {
-        console.log(`Error in MongoDB ${error}`.bgRed.white);
+        // console.log(`Error in MongoDB ${error}`.bgRed.white);
     }
 }
 

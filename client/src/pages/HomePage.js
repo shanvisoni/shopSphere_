@@ -28,7 +28,6 @@ const getAllCategory=async()=>{
       setCategories(data?.category)
     }
   } catch (error) {
-    console.log(error);
 
   }
 }
@@ -40,7 +39,6 @@ const getAllCategory=async()=>{
       const {data}=await axios.get('/api/v1/product/product-count')
       setTotal(data?.total)
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -56,7 +54,6 @@ const getAllCategory=async()=>{
       setLoading(false)
       setProducts([...products,...data?.products])
     } catch (error) {
-      console.log(error);
       setLoading(false)
     }
   }
@@ -87,7 +84,6 @@ const getAllProducts=async()=>{
   } catch (error) {
     setLoading(false)
 
-    console.log(error);
   }
   
 };

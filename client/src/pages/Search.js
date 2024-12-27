@@ -12,7 +12,7 @@ const Search = () => {
       <h1>Search Results</h1>
       <h6>{values?.results.length<1? 'No Products Found' : `Found ${values?.results.length}`}</h6>
       <div className="d-flex flex-wrap mt-4">
-  {values?.results.map((p) => (
+  {Array.isArray(values?.results) &&values?.results.map((p) => (
     <div
       className="card m-2"
       style={{ width: "18rem", display: "flex", flexDirection: "column" }}

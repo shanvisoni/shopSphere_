@@ -1,12 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import Layout from '../component/layout/Layout'
+import { useCart } from '../context/cart'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const API = "http://localhost:5080/api/v1";
 
 const CategoryProduct = () => {
   const params=useParams()
   const navigate=useNavigate()
+  const[cart,setCart]=useCart();
   const [ products,setProducts ]=useState([])
   const [ category,setCategory ]=useState([])
 
@@ -66,7 +69,11 @@ if(params?.slug) getProductsByCat()
         {/* Buttons */}
         <div className="d-flex justify-content-between">
           <button className="btn btn-primary ms-1" onClick={()=>navigate(`/product/${p.slug}`)}>More Details</button>
-          <button className="btn btn-secondary ms-1">ADD TO CART</button>
+          <button className="btn btn-secondary ms-1" onClick={()=>{
+            setCart([...cart,p])
+            localStorage.setItem('cart',JSON.stringify([...cart,p]))
+            toast.success('item added in cart')
+          }}>ADD TO CART</button>
         </div>
       </div>
     </div>

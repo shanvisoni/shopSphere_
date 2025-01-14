@@ -105,7 +105,7 @@ export const loginController = async (req, res) =>{
          
         res.status(500).send({
           success: false,
-          message: "Errro in Registeration",
+          message: "Errro in Login",
           error,
         });
     }
@@ -164,7 +164,7 @@ export const updateProfileController = async (req, res) =>{
    const { email, name, password, phone, address }=req.body
    const user=await userModel.findById(req.user._id)
 
-   if(!password && password.length > 6){
+   if(password && password.length <= 6){
 return res.json({error:'Password is required and 6 character long'})
    }
    const hashedPassword = password ? await hashPassword(password) : undefined
@@ -175,7 +175,7 @@ return res.json({error:'Password is required and 6 character long'})
     address:address || user.address
    },{new:true})
    res.status(200).send({
-    success:true,
+    success:true, 
     message:"profile updated successfully",
     updatedUser
    })

@@ -1,9 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useCart } from '../context/cart'
 import Layout from '../component/layout/Layout'
 import { useSearch } from '../context/search'
+import { toast } from 'react-toastify'
 const API = "http://localhost:5080/api/v1";
 
 const Search = () => {
+  const navigate=useNavigate();
+const[cart,setCart]=useCart();
     const [values,setValues] = useSearch();
   return (
   <Layout title={'Search results'}>
@@ -36,8 +41,12 @@ const Search = () => {
         <p className="card-text">${p.price}</p>
         {/* Buttons */}
         <div className="d-flex justify-content-between">
-          <button className="btn btn-primary ms-1">More Details</button>
-          <button className="btn btn-secondary ms-1">ADD TO CART</button>
+          <button className="btn btn-primary ms-1" onClick={()=>navigate(`/product/${p.slug}`)}>More Details</button>
+          <button className="btn btn-secondary ms-1" onClick={()=>{
+            setCart([...cart,p])
+            localStorage.setItem('cart',JSON.stringify([...cart,p]))
+            toast.success('Item added in cart')
+          }}>ADD TO CART</button>
         </div>
       </div>
     </div>

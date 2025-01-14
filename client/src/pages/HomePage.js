@@ -72,7 +72,7 @@ const handleFilter=(value,id)=>{
 
 useEffect(()=>{
   getAllCategory()
-  getTotal()
+  getTotal() 
 },[]);
 
 const getAllProducts=async()=>{

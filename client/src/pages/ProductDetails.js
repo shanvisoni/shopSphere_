@@ -2,10 +2,13 @@ import Layout from '../component/layout/Layout'
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { useCart } from '../context/cart'
+import { toast } from 'react-toastify'
 const API = "http://localhost:5080/api/v1";
 
 const ProductDetails = () => {
     const params=useParams()
+    const[cart,setCart]=useCart();
     const[product,setProduct]=useState({})
     const[relatedProduct,setRelatedProduct]=useState([])
 
@@ -74,7 +77,11 @@ console.log(data);
             <h6>Description : {product.description}</h6>
             <h6>Price : {product.price}</h6>
            <h6>Category : {product.category?.name || "No Category"}</h6>  
-            <button className="btn btn-secondary ms-1">ADD TO CART</button>
+            <button className="btn btn-secondary ms-1"  onClick={()=>{
+            setCart([...cart,product])
+            localStorage.setItem('cart',JSON.stringify([...cart,product]));
+            toast.success('item added in cart')
+          }}>ADD TO CART</button>
           
             {/* <h6>Shipping : {product.shipping}</h6> */}
             </div>
@@ -113,7 +120,11 @@ console.log(data);
         {/* Buttons */}
         <div className="d-flex justify-content-between">
          
-          <button className="btn btn-secondary ms-1">ADD TO CART</button>
+          <button className="btn btn-secondary ms-1" onClick={()=>{
+            setCart([...cart,p])
+            localStorage.setItem('cart',JSON.stringify([...cart,p]));
+            toast.success('item added in cart')
+          }}>ADD TO CART</button>
         </div>
       </div>
     </div>

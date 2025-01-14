@@ -212,7 +212,7 @@ export const productCountController=async(req,res)=>{
             success:false,
             message:'Error in Product count',
             error,
-        })
+        }) 
     }
 }
 

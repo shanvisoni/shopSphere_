@@ -11,7 +11,7 @@ import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelmetProvider> {/* Wrap your app inside HelmetProvider */}
+    <HelmetProvider> 
       <AuthProvider>
         <SearchProvider>
           <CartProvider>

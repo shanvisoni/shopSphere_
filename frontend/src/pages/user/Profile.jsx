@@ -4,7 +4,8 @@ import UserMenu from '../../component/layout/UserMenu'
 import { useAuth } from '../../context/auth'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-const API = "http://localhost:5080/api/v1";
+const API = import.meta.env.VITE_API_URL;
+
 
 const Profile = () => {
   const [auth,setAuth]=useAuth()

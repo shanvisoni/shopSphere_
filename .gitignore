@@ -52,9 +52,11 @@ logs/
 *.resharper-agent.exe.config*
 
 # Local configuration
-.env*
+backend/.env*
+frontend/.env*
 config.local.js
 database.local.js
+.env*
 
 # Test results
 coverage/

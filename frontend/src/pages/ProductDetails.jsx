@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
+import '../styles/authStyle.css'
+
 const API = import.meta.env.VITE_API_URL;
 
 const ProductDetails = () => {
@@ -67,7 +69,7 @@ console.log(data);
     <Layout>
       <div className='row container mt-2'>
         <div className='col-md-6'>
-        <img src={`${API}/product/product-photo/${product._id}`} className="card-img-top" alt={product.name}
+        <img src={`${API}/product/product-photo/${product._id}`} className="product-detail-img" alt={product.name}
         height="300"
         width={"350px"}/>
         </div>

@@ -6,7 +6,7 @@ import axios from 'axios';
 import CategoryForm from '../../component/Form/CategoryForm';
 import { Button, Modal } from 'antd';
 const API = import.meta.env.VITE_API_URL;
-
+import './Home.css'; 
 
 const CreateCategory = () => {
   const[categories,setCategories]=useState([])
@@ -110,7 +110,8 @@ try {
     {categories?.map((c)=>(
       <>
     <tr>
-      <td key={c._id}>{c.name}</td>
+      {/* <td key={c._id}>{c.name}</td> */}
+      <td style={{ color: "#00e6e6", fontWeight: "500" }}>{c.name}</td> 
            <td><button className='btn btn-primary ms-2' onClick={()=>{setVisible(true) ; setUpdatedName(c.name); setSelected(c);}}>Edit</button></td>
            <td><button className='btn btn-danger ms-2' onClick={()=>{handleDelete(c._id)}}>Delete</button></td>
     </tr>

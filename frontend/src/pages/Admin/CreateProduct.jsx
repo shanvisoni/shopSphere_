@@ -4,10 +4,11 @@ import AdminMenu from '../../component/layout/AdminMenu'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import {Select} from "antd"
+import { DownOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom';
 const {Option}=Select
 const API = import.meta.env.VITE_API_URL;
-
+import './Home.css';
 
 const CreateProduct = () => {
   const navigate=useNavigate()
@@ -70,11 +71,38 @@ const CreateProduct = () => {
           <div className='col-md-9'>
             <h1>Create product</h1>
             <div className="m-1 w-75">
-              <Select bordered={false} placeholder="Select a category" size="large" showSearch className="form-select mb-3" onChange={(value)=>{setCategory(value)}}>
+              {/* <Select bordered={false} placeholder="Select a category" size="large" showSearch className="form-select mb-3" onChange={(value)=>{setCategory(value)}}>
               {categories?.map((c)=>(
                 <Option key={c._id} value={c._id}>{c.name}</Option>
               ))}
-              </Select>
+              </Select> */}
+
+<Select
+  placeholder="Select a category"
+  value={category}
+  onChange={(value) => setCategory(value)}
+  showSearch
+  size="large"
+  suffixIcon={
+    <DownOutlined
+      style={{
+        color: "#1890ff",
+        cursor: "pointer",
+        pointerEvents: "none"
+      }}
+    />
+  }
+  style={{ width: "100%", marginBottom: "1rem" }}
+  dropdownStyle={{ backgroundColor: "white", color: "black" }}
+  getPopupContainer={() => document.body} // ⬇️ Forces dropdown to body
+>
+  {categories?.map((c) => (
+    <Option key={c._id} value={c._id}>
+      <span style={{ color: "#1890ff" }}>{c.name}</span>
+    </Option>
+  ))}
+</Select>
+
               <div className='mb-3'>
                 <label className='btn btn-outline-secondary col-md-12'>
                   {photo ? photo.name : "upload Photo"}
@@ -122,7 +150,7 @@ const CreateProduct = () => {
                 />
               </div>
               <div className='mb-3'>
-                <Select 
+                {/* <Select 
                 bordered={false}
                 size="large"
                 showSearch
@@ -133,7 +161,44 @@ const CreateProduct = () => {
                 >
                 <Option value="0">No</Option>
                 <Option value="1">Yes</Option>
-                </Select>
+                </Select> */}
+
+
+<Select
+  bordered={false}
+  size="large"
+  showSearch
+  className="mb-3" // ✅ Removed `form-select` to avoid CSS conflict
+  value={shipping ? "yes" : "No"}
+  onChange={(value) => setShipping(value)}
+  suffixIcon={
+    <DownOutlined
+      style={{
+        color: "#1890ff",
+        cursor: "pointer",
+        pointerEvents: "none",
+      }}
+    />
+  }
+  style={{
+    width: "100%",
+    marginBottom: "1rem",
+  }}
+  dropdownStyle={{
+    backgroundColor: "white",
+    color: "black",
+  }}
+  getPopupContainer={() => document.body} // ✅ Fix dropdown direction
+>
+  <Option value="0">
+    <span style={{ color: "#ff4d4f" }}>No</span>
+  </Option>
+  <Option value="1">
+    <span style={{ color: "#52c41a" }}>Yes</span>
+  </Option>
+</Select>
+
+
               </div>
               <div className='mb-3'>
                 <button className='btn btn-primary' onClick={handleCreate}>CREATE PRODUCT</button>

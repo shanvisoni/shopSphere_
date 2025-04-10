@@ -1,0 +1,85 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h1, h4 {
+    color: #ffffff;
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #1e1e1e;
+    border: 1px solid #2c2c2c;
+    color: #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    background-color: #6200ea;
+    border-color: #6200ea;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #7e3ff2;
+  }
+  
+  .btn-secondary {
+    background-color: #03dac6;
+    border-color: #03dac6;
+    color: #000;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #00bfa5;
+  }
+  
+  .btn-danger {
+    background-color: #cf6679;
+    border-color: #cf6679;
+    color: white;
+  }
+  
+  .btn-warning {
+    background-color: #ffb300;
+    border-color: #ffb300;
+    color: #000;
+  }
+  
+  /* Filters */
+  .text-center {
+    color: #ffeb3b;
+  }
+  
+  .checkbox, .radio {
+    background-color: transparent;
+    color: #fff;
+  }
+  
+  .ant-radio-wrapper, .ant-checkbox-wrapper {
+    color: #e0e0e0;
+  }
+  
+  /* Scrollbars (optional) */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

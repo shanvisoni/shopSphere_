@@ -4,7 +4,9 @@ import AdminMenu from '../../component/layout/AdminMenu'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import {Select} from "antd"
+import { DownOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from 'react-router-dom';
+import './Home.css'; 
 const {Option}=Select
 const API = import.meta.env.VITE_API_URL;
 
@@ -108,14 +110,42 @@ toast.error('Something went wrong')
         </div>
         <div className='col-md-9'>
           <h1>Update product</h1>
-          <div className="m-1 w-75">
-            <Select bordered={false} placeholder="Select a category" size="large" showSearch className="form-select mb-3" onChange={(value)=>{setCategory(value)}}
+          <div className="product-form m-1 w-75">
+            {/* <Select bordered={false} placeholder="Select a category" size="large" showSearch className="form-select mb-3" onChange={(value)=>{setCategory(value)}}
                value={category}
                >
             {categories?.map((c)=>(
               <Option key={c._id} value={c._id}>{c.name}</Option>
             ))}
-            </Select>
+            </Select> */}
+
+<Select
+      placeholder="Select a category"
+      value={category}
+      onChange={(value) => setCategory(value)}
+      showSearch
+      size="large"
+      suffixIcon={
+        <DownOutlined
+          style={{
+            color: "#1890ff",
+            // cursor: "pointer",
+            pointerEvents: "none" // ✅ make icon non-blocking
+          }}
+        />
+      }
+      // suffixIcon={<DownOutlined style={{ color: "#1890ff" }} />} // 👈 custom dropdown icon
+      style={{ width: "100%", marginBottom: "1rem" }}
+      dropdownStyle={{ backgroundColor: "white", color: "black" }}
+      getPopupContainer={() => document.body} 
+    >
+      {categories?.map((c) => (
+        <Option key={c._id} value={c._id}>
+          <span style={{ color: "#1890ff" }}>{c.name}</span>
+        </Option>
+      ))}
+    </Select>
+
             <div className='mb-3'>
               <label className='btn btn-outline-secondary col-md-12'>
                 {photo ? photo.name : "upload Photo"}
@@ -138,7 +168,7 @@ toast.error('Something went wrong')
               <input type='text'
               value={name}
               placeholder='write a name'
-              className='form-control'
+              className='form-control custom-input'
               onChange={(e)=>setName(e.target.value)}
               />
             </div>
@@ -146,7 +176,7 @@ toast.error('Something went wrong')
               <input type='text'
               value={description}
               placeholder='write a description'
-              className='form-control'
+              className='form-control custom-input'
               onChange={(e)=>setDescription(e.target.value)}
               />
             </div>
@@ -154,7 +184,7 @@ toast.error('Something went wrong')
               <input type='text'
               value={price}
               placeholder='write a price'
-              className='form-control'
+              className='form-control custom-input'
               onChange={(e)=>setPrice(e.target.value)}
               />
             </div>
@@ -162,12 +192,12 @@ toast.error('Something went wrong')
               <input type='number'
               value={quantity}
               placeholder='write a quantity'
-              className='form-control'
+              className='form-control custom-input'
               onChange={(e)=>setQuantity(e.target.value)}
               />
             </div>
             <div className='mb-3'>
-              <Select 
+              {/* <Select 
               bordered={false}
               size="large"
               showSearch
@@ -179,7 +209,42 @@ toast.error('Something went wrong')
               >
               <Option value="0">No</Option>
               <Option value="1">Yes</Option>
-              </Select>
+              </Select> */}
+
+<Select
+  bordered={false}
+  size="large"
+  showSearch
+  className="mb-3" // ✅ Removed `form-select` to avoid CSS conflict
+  value={shipping ? "yes" : "No"}
+  onChange={(value) => setShipping(value)}
+  suffixIcon={
+    <DownOutlined
+      style={{
+        color: "#1890ff",
+        cursor: "pointer",
+        pointerEvents: "none",
+      }}
+    />
+  }
+  style={{
+    width: "100%",
+    marginBottom: "1rem",
+  }}
+  dropdownStyle={{
+    backgroundColor: "white",
+    color: "black",
+  }}
+  getPopupContainer={() => document.body} // ✅ Fix dropdown direction
+>
+  <Option value="0">
+    <span style={{ color: "#ff4d4f" }}>No</span>
+  </Option>
+  <Option value="1">
+    <span style={{ color: "#52c41a" }}>Yes</span>
+  </Option>
+</Select>
+
             </div>
             <div className='mb-3'>
               <button className='btn btn-primary' onClick={handleUpdate}>Update PRODUCT</button>

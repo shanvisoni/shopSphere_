@@ -15,8 +15,7 @@ const app=express()
 
 
 app.use(cors({
-  origin: "http://localhost:5173",
-  origin: "https://shopsphere-suwf.onrender.com",
+  origin: ["http://localhost:5173", "https://shopsphere-suwf.onrender.com"],
   credentials: true,
 }));
 

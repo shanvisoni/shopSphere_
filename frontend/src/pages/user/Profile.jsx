@@ -4,6 +4,8 @@ import UserMenu from '../../component/layout/UserMenu'
 import { useAuth } from '../../context/auth'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import './profile.css'
+
 const API = import.meta.env.VITE_API_URL;
 
 

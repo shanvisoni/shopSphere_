@@ -227,7 +227,6 @@
 
 
 
-
 import React, { useEffect, useState } from 'react'
 import Layout from '../component/layout/Layout'
 import axios from 'axios'
@@ -238,7 +237,7 @@ import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
 import './HomePage.css';
 
-const API = "http://localhost:5080/api/v1";
+const API = import.meta.env.VITE_API_URL;
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -262,7 +261,8 @@ const HomePage = () => {
         setCategories(data?.category)
       }
     } catch (error) {
-      console.error(error)
+      console.error("Error fetching categories:", error)
+      toast.error("Failed to load categories")
     } finally {
       setCategoriesLoading(false)
     }
@@ -274,7 +274,7 @@ const HomePage = () => {
       const { data } = await axios.get(`${API}/product/product-count`)
       setTotal(data?.total)
     } catch (error) {
-      console.error(error)
+      console.error("Error fetching product count:", error)
     }
   }
 
@@ -289,7 +289,8 @@ const HomePage = () => {
       const { data } = await axios.get(`${API}/product/product-list/${page}`)
       setProducts([...products, ...data?.products])
     } catch (error) {
-      console.error(error)
+      console.error("Error loading more products:", error)
+      toast.error("Failed to load more products")
     } finally {
       setLoading(false)
     }
@@ -299,8 +300,7 @@ const HomePage = () => {
     let all = [...checked];
     if (value) {
       all.push(id);
-    }
-    else {
+    } else {
       all = all.filter((c) => c !== id);
     }
     setChecked(all);
@@ -309,6 +309,7 @@ const HomePage = () => {
   useEffect(() => {
     getAllCategory()
     getTotal()
+    getAllProducts()
   }, []);
 
   const getAllProducts = async () => {
@@ -317,7 +318,8 @@ const HomePage = () => {
       const { data } = await axios.get(`${API}/product/product-list/${page}`)
       setProducts(data.products);
     } catch (error) {
-      console.error(error)
+      console.error("Error fetching products:", error)
+      toast.error("Failed to load products")
     } finally {
       setLoading(false)
       setInitialLoad(false)
@@ -339,7 +341,8 @@ const HomePage = () => {
       const { data } = await axios.post(`${API}/product/product-filters`, { checked, radio })
       setProducts(data?.products)
     } catch (error) {
-      console.error(error)
+      console.error("Error filtering products:", error)
+      toast.error("Failed to filter products")
     } finally {
       setLoading(false)
     }
@@ -409,6 +412,10 @@ const HomePage = () => {
                         className="card-img-top"
                         alt={p.name}
                         style={{ height: "200px", objectFit: "cover" }}
+                        onError={(e) => {
+                          e.target.onerror = null; 
+                          e.target.src = 'https://via.placeholder.com/200?text=Product+Image';
+                        }}
                       />
                       <div className="card-body" style={{ flex: "1" }}>
                         <h5 className="card-title">{p.name}</h5>
